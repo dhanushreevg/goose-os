@@ -1,0 +1,55 @@
+{
+  "themes": {
+    "light": {
+      "bg": "#F3F5F7",
+      "surface": "rgba(255, 255, 255, 0.66)",
+      "surfaceSolid": "#FFFFFF",
+      "border": "rgba(15, 23, 42, 0.14)",
+      "borderStrong": "#4B5563",
+      "fg": "#1F2937",
+      "fgMuted": "#5B6572",
+      "primary": "#C2410C",
+      "primaryContrast": "#FFFFFF",
+      "accent": {
+        "blue": "#2563EB",
+        "green": "#16A34A",
+        "red": "#DC2626",
+        "yellow": "#B45309"
+      }
+    },
+    "dark": {
+      "bg": "#0F1115",
+      "surface": "rgba(26, 30, 38, 0.68)",
+      "surfaceSolid": "#1A1E26",
+      "border": "rgba(255, 255, 255, 0.14)",
+      "borderStrong": "#CBD2DC",
+      "fg": "#E5E7EB",
+      "fgMuted": "#9CA3AF",
+      "primary": "#FB923C",
+      "primaryContrast": "#241504",
+      "accent": {
+        "blue": "#60A5FA",
+        "green": "#4ADE80",
+        "red": "#F87171",
+        "yellow": "#FBBF24"
+      }
+    }
+  },
+  "shared": {
+    "blur": "16px",
+    "radiusSm": "0.5rem",
+    "radius": "0.75rem",
+    "radiusLg": "1rem",
+    "radiusXl": "1.5rem",
+    "radiusFull": "9999px",
+    "shadowSm": "0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.10)",
+    "shadow": "0 4px 12px rgba(15, 23, 42, 0.10), 0 2px 4px rgba(15, 23, 42, 0.06)",
+    "shadowLg": "0 12px 32px rgba(15, 23, 42, 0.18), 0 4px 12px rgba(15, 23, 42, 0.10)",
+    "fontSans": "system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif",
+    "fontMono": "'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, 'SF Mono', Menlo, Consolas, monospace",
+    "durationFast": "120ms",
+    "duration": "200ms",
+    "durationSlow": "300ms",
+    "ease": "cubic-bezier(0.2, 0, 0, 1)"
+  }
+}
