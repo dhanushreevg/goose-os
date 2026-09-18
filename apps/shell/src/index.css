@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+@import '@goose/design-tokens/theme.css';
+@import '@goose/ui/styles.css';
+
+@theme inline {
+  --color-bg: var(--goose-bg);
+  --color-surface: var(--goose-surface);
+  --color-surface-solid: var(--goose-surface-solid);
+  --color-line: var(--goose-border);
+  --color-ink: var(--goose-fg);
+  --color-ink-muted: var(--goose-fg-muted);
+  --color-brand: var(--goose-primary);
+  --color-brand-contrast: var(--goose-primary-contrast);
+  --color-accent-blue: var(--goose-accent-blue);
+  --color-accent-green: var(--goose-accent-green);
+  --color-accent-red: var(--goose-accent-red);
+  --color-accent-yellow: var(--goose-accent-yellow);
+  --font-sans: var(--goose-font-sans);
+  --font-mono: var(--goose-font-mono);
+  --radius-glass: var(--goose-radius);
+  --radius-glass-lg: var(--goose-radius-lg);
+  --shadow-glass: var(--goose-shadow);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: var(--goose-bg);
+  color: var(--goose-fg);
+  font-family: var(--goose-font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--goose-primary) 30%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--goose-primary);
+  outline-offset: 2px;
+}
+
+.goose-slider::-moz-range-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--goose-radius-full);
+  background: var(--goose-primary);
+  border: none;
+}
