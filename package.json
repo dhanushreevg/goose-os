@@ -1,0 +1,33 @@
+{
+  "name": "goose-os",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GOOSE OS — an AI-native developer operating system prototype (Team GOOSE).",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently -n shell,system -c cyan,yellow \"pnpm --filter @goose/shell dev\" \"pnpm --filter @goose/system-service start\"",
+    "build": "pnpm --filter @goose/shell build",
+    "preview": "pnpm --filter @goose/shell preview",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.0",
+    "concurrently": "^9.1.0",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "globals": "^15.14.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  }
+}
