@@ -22,7 +22,7 @@ export function NotificationCenter() {
       <div
         role="dialog"
         aria-label="Notifications"
-        className="goose-glass pointer-events-auto w-full max-w-sm goose-radius-xl p-5 shadow-[var(--goose-shadow-lg)]"
+        className="goose-launcher-panel pointer-events-auto w-full max-w-sm goose-radius-xl border border-line/70 bg-white/85 p-5 shadow-[var(--goose-shadow-lg)] backdrop-blur-[var(--goose-blur)]"
       >
         <div className="flex items-center justify-between gap-2">
           <h2 className="flex items-center gap-2 text-base font-semibold text-ink">

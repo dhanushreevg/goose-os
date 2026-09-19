@@ -6,6 +6,8 @@ export type IconName =
   | 'grid'
   | 'close'
   | 'minimize'
+  | 'maximize'
+  | 'restore'
   | 'bell'
   | 'wifi'
   | 'wifi-off'
@@ -34,7 +36,14 @@ export type IconName =
   | 'arrow-up-right'
   | 'home'
   | 'monitor'
-  | 'clock';
+  | 'clock'
+  | 'globe'
+  | 'store'
+  | 'cpu'
+  | 'music'
+  | 'trash'
+  | 'play'
+  | 'pause';
 
 const ICONS: Record<IconName, ReactElement> = {
   goose: (
@@ -53,6 +62,18 @@ const ICONS: Record<IconName, ReactElement> = {
   ),
   close: <path d="M6 6l12 12M18 6L6 18" />,
   minimize: <path d="M5 12h14" />,
+  maximize: (
+    <>
+      <rect x="5" y="5" width="14" height="14" rx="1.6" />
+      <path d="M9 5V4.5A1.5 1.5 0 0 1 10.5 3h9A1.5 1.5 0 0 1 21 4.5v9a1.5 1.5 0 0 1-1.5 1.5H17" />
+    </>
+  ),
+  restore: (
+    <>
+      <rect x="4" y="8" width="12" height="12" rx="1.6" />
+      <path d="M8 8V4.5A1.5 1.5 0 0 1 9.5 3h10A1.5 1.5 0 0 1 21 4.5v10a1.5 1.5 0 0 1-1.5 1.5H16" />
+    </>
+  ),
   bell: (
     <>
       <path d="M6.3 9.2a5.7 5.7 0 0 1 11.4 0c0 4.8 1.3 6.5 2 7.3H4.3c.7-.8 2-2.5 2-7.3z" />
@@ -203,6 +224,53 @@ const ICONS: Record<IconName, ReactElement> = {
     <>
       <circle cx="12" cy="12" r="8.5" />
       <path d="M12 7.5V12l3 2" />
+    </>
+  ),
+  globe: (
+    <>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M3.5 12h17" />
+      <path d="M12 3.5c2.4 2.3 3.6 5.3 3.6 8.5s-1.2 6.2-3.6 8.5c-2.4-2.3-3.6-5.3-3.6-8.5s1.2-6.2 3.6-8.5z" />
+    </>
+  ),
+  store: (
+    <>
+      <path d="M4 10h16v9.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19.5V10z" />
+      <path d="M4 10l1.2-5h13.6L20 10" />
+      <path d="M9 21v-6h6v6" />
+    </>
+  ),
+  cpu: (
+    <>
+      <rect x="6.5" y="6.5" width="11" height="11" rx="2" />
+      <rect x="10" y="10" width="4" height="4" rx="0.8" />
+      <path d="M9.5 2.5v4M14.5 2.5v4M9.5 17.5v4M14.5 17.5v4M2.5 9.5h4M2.5 14.5h4M17.5 9.5h4M17.5 14.5h4" />
+    </>
+  ),
+  music: (
+    <>
+      <path d="M9 18.5V6l10-2v12.5" />
+      <circle cx="6.5" cy="18.5" r="2.5" />
+      <circle cx="16.5" cy="16.5" r="2.5" />
+    </>
+  ),
+  trash: (
+    <>
+      <path d="M4.5 6.5h15" />
+      <path d="M6.5 6.5V19a1.5 1.5 0 0 0 1.5 1.5h8A1.5 1.5 0 0 0 17.5 19V6.5" />
+      <path d="M9.5 6.5V4.5A1.5 1.5 0 0 1 11 3h2a1.5 1.5 0 0 1 1.5 1.5v2" />
+      <path d="M10 10.5v6M14 10.5v6" />
+    </>
+  ),
+play: (
+    <>
+      <path d="M7 5.5L19 12 7 18.5v-13z" />
+    </>
+  ),
+  pause: (
+    <>
+      <rect x="6" y="5" width="4" height="14" rx="1" />
+      <rect x="14" y="5" width="4" height="14" rx="1" />
     </>
   ),
 };

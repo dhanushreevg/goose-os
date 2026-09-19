@@ -22,6 +22,7 @@ export type ShellAction =
   | { type: 'OPEN_APP'; app: AppDefinition }
   | { type: 'CLOSE_WINDOW'; id: string }
   | { type: 'TOGGLE_MINIMIZE'; id: string }
+  | { type: 'MAXIMIZE_WINDOW'; id: string }
   | { type: 'FOCUS_WINDOW'; id: string }
   | { type: 'MOVE_WINDOW'; id: string; x: number; y: number }
   | { type: 'RESIZE_WINDOW'; id: string; w: number; h: number }
@@ -130,6 +131,33 @@ export function shellReducer(state: ShellState, action: ShellAction): ShellState
       );
       const topmost = topmostOf(windows, state.activeWorkspace);
       return { ...state, windows, focusedWindowId: topmost?.id ?? null };
+    }
+    case 'MAXIMIZE_WINDOW': {
+      const target = state.windows.find((window) => window.id === action.id);
+      if (!target) return state;
+      if (target.maximized) {
+        const prev = target.prevBounds ?? { x: 96, y: 56, w: 640, h: 420 };
+        return {
+          ...state,
+          windows: state.windows.map((window) =>
+            window.id === action.id
+              ? { ...window, maximized: false, prevBounds: undefined, ...prev }
+              : window,
+          ),
+        };
+      }
+      return {
+        ...state,
+        windows: state.windows.map((window) =>
+          window.id === action.id
+            ? {
+                ...window,
+                maximized: true,
+                prevBounds: { x: window.x, y: window.y, w: window.w, h: window.h },
+              }
+            : window,
+        ),
+      };
     }
     case 'FOCUS_WINDOW': {
       const windows = state.windows.map((window) =>

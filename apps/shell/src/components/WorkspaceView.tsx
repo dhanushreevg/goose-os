@@ -1,7 +1,8 @@
 import { Icon } from '@goose/ui';
-import { greeting } from '@goose/shared-utils';
 import { useShell } from '../store';
+import { DOCK_WIDTH, TOP_BAR_HEIGHT, WORKSPACE_BAR_HEIGHT } from '../layout';
 import { WindowCard } from './WindowCard';
+import { WelcomeArea } from './WelcomeArea';
 
 export function WorkspaceView() {
   const { state } = useShell();
@@ -12,24 +13,28 @@ export function WorkspaceView() {
 
   return (
     <main
-      className="absolute inset-0 z-10 flex pt-12 pb-20"
+      className="absolute inset-0 z-10 flex"
+      style={{
+        paddingTop: TOP_BAR_HEIGHT,
+        paddingBottom: WORKSPACE_BAR_HEIGHT,
+        paddingLeft: DOCK_WIDTH,
+        paddingRight: 0,
+      }}
       aria-label={`Workspace ${state.activeWorkspace + 1}`}
     >
-      <div className="relative h-full w-full">
-        {sorted.length === 0 && (
-          <div
-            className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-2 text-center"
-            aria-hidden="true"
-          >
-            <Icon name="grid" size={40} className="text-ink-muted/60" />
-            <p className="text-ink-muted">
-              {greeting()} — press <kbd className="rounded bg-surface px-1.5 py-0.5 font-mono text-xs">Super+A</kbd> to launch an app
-            </p>
-          </div>
-        )}
+      <div className="relative h-full w-full overflow-hidden">
+        {sorted.length === 0 && <WelcomeArea />}
         {sorted.map((window) => (
           <WindowCard key={window.id} window={window} />
         ))}
+        {sorted.length > 0 && (
+          <Icon
+            aria-hidden="true"
+            name="goose"
+            size={28}
+            className="pointer-events-none absolute bottom-3 right-4 text-ink-muted/20"
+          />
+        )}
       </div>
     </main>
   );

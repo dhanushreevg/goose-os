@@ -44,6 +44,10 @@ export interface WindowState {
   focused: boolean;
   /** Window is minimised but kept alive. */
   minimized?: boolean;
+  /** Window is maximised to fill its workspace. */
+  maximized?: boolean;
+  /** Geometry to restore when un-maximising. */
+  prevBounds?: { x: number; y: number; w: number; h: number };
   /** Stacking order within the workspace (higher is on top). */
   z?: number;
 }

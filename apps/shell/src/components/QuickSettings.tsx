@@ -1,5 +1,5 @@
 import type { SystemSource } from '@goose/types';
-import { Button, Icon, SegmentedControl, Slider, Switch } from '@goose/ui';
+import { Button, Icon, Slider, Switch } from '@goose/ui';
 import { formatBytes, formatUptime } from '@goose/shared-utils';
 import { useShell } from '../store';
 import { useSettings } from '../hooks/useSettings';
@@ -13,7 +13,7 @@ const SOURCE: Record<SystemSource, { label: string; color: string }> = {
 
 export function QuickSettings() {
   const { state } = useShell();
-  const { settings, update, resolved } = useSettings();
+  const { settings, update } = useSettings();
   const { health, refresh } = useSystemHealth();
   const system = health.data.system;
   const source = SOURCE[health.source];
@@ -23,7 +23,7 @@ export function QuickSettings() {
       <div
         role="dialog"
         aria-label="Quick settings"
-        className="goose-glass pointer-events-auto w-full max-w-sm goose-radius-xl p-5 shadow-[var(--goose-shadow-lg)]"
+        className="goose-launcher-panel pointer-events-auto w-full max-w-sm goose-radius-xl border border-line/70 bg-white/85 p-5 shadow-[var(--goose-shadow-lg)] backdrop-blur-[var(--goose-blur)]"
       >
         <div className="flex items-center justify-between gap-2">
           <h2 className="text-base font-semibold text-ink">Quick settings</h2>
@@ -46,18 +46,9 @@ export function QuickSettings() {
           </div>
         </div>
 
-        <div className="mt-4 flex flex-col gap-4">
-          <SegmentedControl
-            label="Theme"
-            value={settings.themeMode}
-            onChange={(value) => update('themeMode', value as typeof settings.themeMode)}
-            options={[
-              { value: 'light', label: 'Light' },
-              { value: 'system', label: 'System' },
-              { value: 'dark', label: 'Dark' },
-            ]}
-          />
-        </div>
+        <p className="mt-1 text-xs text-ink-muted">
+          This build ships the GOOSE OS light theme. Dark mode returns in a later release.
+        </p>
 
         <div className="mt-4 flex flex-col gap-3">
           <div className="flex items-center justify-between gap-3">
@@ -144,7 +135,7 @@ export function QuickSettings() {
         )}
 
         <p className="mt-4 text-center text-xs text-ink-muted">
-          GOOSE OS 0.1 · Workspace {state.activeWorkspace + 1} of {state.workspaces} · Theme {resolved}
+          GOOSE OS 0.1 · Workspace {state.activeWorkspace + 1} of {state.workspaces} · Light theme
         </p>
       </div>
     </div>

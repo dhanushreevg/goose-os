@@ -5,11 +5,11 @@ import { useClock } from './hooks/useClock';
 import { useSettings } from './hooks/useSettings';
 import { useSystemHealth } from './hooks/useSystemHealth';
 import { useKeyboard } from './hooks/useKeyboard';
-import { appById } from './registry';
 import { Wallpaper } from './components/Wallpaper';
 import { TopPanel } from './components/TopPanel';
 import { Dock } from './components/Dock';
 import { WorkspaceView } from './components/WorkspaceView';
+import { WorkspaceBar } from './components/WorkspaceBar';
 import { Launcher } from './components/Launcher';
 import { QuickSettings } from './components/QuickSettings';
 import { NotificationCenter } from './components/NotificationCenter';
@@ -64,30 +64,13 @@ function ShellApp() {
     }
   }, [system.health.source, dispatch]);
 
-  const focusedWindow = state.windows.find((window) => window.id === state.focusedWindowId);
-  const activeAppName = focusedWindow ? appById(focusedWindow.appId).name : 'Desktop';
-
   return (
     <div role="application" aria-label="GOOSE OS desktop" className="relative h-full overflow-hidden text-ink">
       <Wallpaper />
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center pb-24"
-      >
-        <div className="flex select-none flex-col items-center gap-1 text-center">
-          <span className="text-6xl font-semibold tracking-tight text-ink-muted/70 tabular-nums">
-            {clock.time}
-          </span>
-          <span className="text-lg text-ink-muted/70">
-            {greeting()} · {clock.date}
-          </span>
-        </div>
-      </div>
-
       <WorkspaceView />
       <TopPanel clock={clock} settings={settings} system={system} />
       <Dock />
+      <WorkspaceBar />
 
       {state.overlay !== null && (
         <button
@@ -96,7 +79,7 @@ function ShellApp() {
           tabIndex={-1}
           className={
             state.overlay === 'launcher'
-              ? 'absolute inset-0 z-40 bg-black/30 backdrop-blur-sm'
+              ? 'goose-fade-in absolute inset-0 z-40 bg-[rgba(15,23,42,0.18)] backdrop-blur-[2px]'
               : 'absolute inset-0 z-40'
           }
           onClick={() => dispatch({ type: 'CLOSE_OVERLAY' })}
@@ -107,13 +90,6 @@ function ShellApp() {
       {state.overlay === 'notifications' && <NotificationCenter />}
 
       <ToastHost />
-
-      <footer
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-14 left-1/2 z-0 hidden -translate-x-1/2 text-xs text-ink-muted/70 sm:block"
-      >
-        {activeAppName} · GOOSE OS 0.1 prototype
-      </footer>
     </div>
   );
 }

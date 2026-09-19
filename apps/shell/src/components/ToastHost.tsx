@@ -28,7 +28,7 @@ export function ToastHost() {
     <div
       role="status"
       aria-live="polite"
-      className="goose-glass pointer-events-auto absolute right-3 top-14 z-[60] w-80 max-w-[calc(100vw-1.5rem)] goose-radius-lg p-4 shadow-[var(--goose-shadow-lg)]"
+      className="goose-launcher-panel pointer-events-auto absolute right-3 top-14 z-[60] w-80 max-w-[calc(100vw-1.5rem)] goose-radius-lg border border-line/70 bg-white/90 p-4 shadow-[var(--goose-shadow-lg)] backdrop-blur-[var(--goose-blur)]"
     >
       <div className="flex items-start gap-3">
         <span className="mt-0.5 text-brand">

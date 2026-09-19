@@ -101,6 +101,20 @@ describe('shell reducer', () => {
     expect(state.windows[0]!.h).toBe(220);
   });
 
+  it('maximises and restores windows', () => {
+    let state = createInitialState();
+    state = shellReducer(state, { type: 'OPEN_APP', app: Files });
+    const id = state.windows[0]!.id;
+    const original = { x: state.windows[0]!.x, y: state.windows[0]!.y, w: state.windows[0]!.w, h: state.windows[0]!.h };
+    state = shellReducer(state, { type: 'MAXIMIZE_WINDOW', id });
+    expect(state.windows[0]!.maximized).toBe(true);
+    expect(state.windows[0]!.prevBounds).toEqual(original);
+    state = shellReducer(state, { type: 'MAXIMIZE_WINDOW', id });
+    expect(state.windows[0]!.maximized).toBe(false);
+    expect(state.windows[0]!.x).toBe(original.x);
+    expect(state.windows[0]!.w).toBe(original.w);
+  });
+
   it('registers preview windows from the registry', () => {
     const ai = appById('ai-center');
     expect(ai.kind).toBe('preview');
