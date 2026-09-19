@@ -1,0 +1,131 @@
+@import 'tailwindcss';
+@import '@goose/design-tokens/theme.css';
+@import '@goose/ui/styles.css';
+
+@theme inline {
+  --color-bg: var(--goose-bg);
+  --color-surface: var(--goose-surface);
+  --color-surface-solid: var(--goose-surface-solid);
+  --color-line: var(--goose-border);
+  --color-ink: var(--goose-fg);
+  --color-ink-muted: var(--goose-fg-muted);
+  --color-brand: var(--goose-primary);
+  --color-brand-contrast: var(--goose-primary-contrast);
+  --color-accent-blue: var(--goose-accent-blue);
+  --color-accent-green: var(--goose-accent-green);
+  --color-accent-red: var(--goose-accent-red);
+  --color-accent-yellow: var(--goose-accent-yellow);
+  --font-sans: var(--goose-font-sans);
+  --font-mono: var(--goose-font-mono);
+  --radius-glass: var(--goose-radius);
+  --radius-glass-lg: var(--goose-radius-lg);
+  --shadow-glass: var(--goose-shadow);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: var(--goose-bg);
+  color: var(--goose-fg);
+  font-family: var(--goose-font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--goose-primary) 30%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--goose-primary);
+  outline-offset: 2px;
+}
+
+.goose-slider::-moz-range-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--goose-radius-full);
+  background: var(--goose-primary);
+  border: none;
+}
+
+/*
+ * Shell entry animations. Durations come from tokens and are collapsed to ~0
+ * by the reduced-motion rules in theme.css.
+ */
+@keyframes goose-launcher-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes goose-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes goose-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes goose-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.goose-launcher-panel {
+  animation: goose-launcher-in var(--goose-duration-slow) var(--goose-ease);
+}
+
+.goose-window-card {
+  animation: goose-pop-in var(--goose-duration) var(--goose-ease);
+}
+
+.goose-workspace-bar {
+  animation: goose-rise-in var(--goose-duration-slow) var(--goose-ease);
+}
+
+.goose-welcome {
+  animation: goose-fade-in var(--goose-duration-slow) var(--goose-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .goose-launcher-panel,
+  .goose-window-card,
+  .goose-workspace-bar,
+  .goose-welcome {
+    animation: goose-fade-in 0.01ms linear;
+  }
+}

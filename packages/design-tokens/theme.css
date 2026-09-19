@@ -1,0 +1,101 @@
+/**
+ * @goose/design-tokens — generated theme.
+ * Do not edit by hand. Edit src/palette.json and run `pnpm --filter @goose/design-tokens generate`.
+ */
+:root {
+--goose-blur: 16px;
+--goose-radius-sm: 0.5rem;
+--goose-radius: 0.75rem;
+--goose-radius-lg: 1rem;
+--goose-radius-xl: 1.5rem;
+--goose-radius-full: 9999px;
+--goose-shadow-sm: 0 1px 2px rgba(30, 41, 59, 0.05), 0 1px 3px rgba(30, 41, 59, 0.07);
+--goose-shadow: 0 4px 14px rgba(30, 41, 59, 0.07), 0 2px 5px rgba(30, 41, 59, 0.04);
+--goose-shadow-lg: 0 18px 44px rgba(30, 41, 59, 0.13), 0 6px 16px rgba(30, 41, 59, 0.07);
+--goose-font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif;
+--goose-font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+--goose-duration-fast: 120ms;
+--goose-duration: 200ms;
+--goose-duration-slow: 300ms;
+--goose-ease: cubic-bezier(0.2, 0, 0, 1);
+}
+:root, html[data-theme='light'] {
+--goose-bg: #F4F3F0;
+--goose-surface: rgba(255, 255, 255, 0.72);
+--goose-surface-solid: #FFFFFF;
+--goose-border: rgba(24, 29, 38, 0.11);
+--goose-border-strong: #8A94A3;
+--goose-fg: #1C2128;
+--goose-fg-muted: #5B6572;
+--goose-primary: #C2410C;
+--goose-primary-contrast: #FFFFFF;
+--goose-accent-blue: #2563EB;
+--goose-accent-green: #16A34A;
+--goose-accent-red: #DC2626;
+--goose-accent-yellow: #A16207;
+}
+html[data-theme='dark'] {
+--goose-bg: #0F1115;
+--goose-surface: rgba(26, 30, 38, 0.68);
+--goose-surface-solid: #1A1E26;
+--goose-border: rgba(255, 255, 255, 0.14);
+--goose-border-strong: #CBD2DC;
+--goose-fg: #E5E7EB;
+--goose-fg-muted: #9CA3AF;
+--goose-primary: #FB923C;
+--goose-primary-contrast: #241504;
+--goose-accent-blue: #60A5FA;
+--goose-accent-green: #4ADE80;
+--goose-accent-red: #F87171;
+--goose-accent-yellow: #FBBF24;
+}
+
+/* Radius utilities. */
+.goose-radius-sm { border-radius: var(--goose-radius-sm); }
+.goose-radius { border-radius: var(--goose-radius); }
+.goose-radius-lg { border-radius: var(--goose-radius-lg); }
+.goose-radius-xl { border-radius: var(--goose-radius-xl); }
+.goose-radius-full { border-radius: var(--goose-radius-full); }
+
+/* Respect the operating system's reduced-motion preference. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Explicit GOOSE reduced-motion toggle (overrides OS preference). */
+html[data-reduced-motion='true'] *,
+html[data-reduced-motion='true'] *::before,
+html[data-reduced-motion='true'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Glass surface. Translucent with backdrop blur; falls back to solid
+ * whenever the browser does not support backdrop-filter. */
+.goose-glass {
+  background-color: var(--goose-surface);
+  border: 1px solid var(--goose-border);
+  backdrop-filter: blur(var(--goose-blur)) saturate(1.2);
+  -webkit-backdrop-filter: blur(var(--goose-blur)) saturate(1.2);
+  box-shadow: var(--goose-shadow-sm);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .goose-glass {
+    background-color: var(--goose-surface-solid);
+  }
+}
+
+/* High-contrast mode: solid surfaces, stronger borders, no blur. */
+html[data-high-contrast='true'] {
+  --goose-surface: var(--goose-surface-solid);
+  --goose-border: var(--goose-border-strong);
+  --goose-blur: 0px;
+}
