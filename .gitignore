@@ -32,3 +32,4 @@ coverage/
 .cache/
 .vercel/demo-goose.iso
 /demo-goose.iso
+demo-goose.iso
