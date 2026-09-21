@@ -31,3 +31,4 @@ coverage/
 # local tooling
 .cache/
 .vercel/demo-goose.iso
+/demo-goose.iso
