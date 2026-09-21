@@ -3,8 +3,8 @@ import type { KeyboardEvent as ReactKeyboardEvent, ReactNode } from 'react';
 import { Icon } from '@goose/ui';
 import type { AppDefinition } from '@goose/types';
 import { APPS } from '../registry';
-import { appIcon } from '../appIcon';
 import { useShell } from '../store';
+import { AppGlyph } from './AppGlyph';
 import { useFocusTrap } from '../hooks/useFocusTrap';
 import { cn } from '@goose/shared-utils';
 
@@ -107,15 +107,7 @@ export function Launcher() {
         onMouseEnter={() => setActiveIndex(index)}
         onClick={() => openApp(app)}
       >
-        <span
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
-          style={{
-            color: app.tint,
-            backgroundColor: `color-mix(in srgb, ${app.tint} 14%, transparent)`,
-          }}
-        >
-          <Icon name={appIcon(app.id)} size={20} />
-        </span>
+        <AppGlyph app={app} size={40} className="h-10 w-10 rounded-xl" />
         <span className="min-w-0">
           <span className="block truncate text-sm font-medium text-ink">{app.name}</span>
           <span className="block truncate text-xs text-ink-muted">{app.description}</span>

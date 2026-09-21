@@ -1,8 +1,9 @@
 import { Icon } from '@goose/ui';
 import { APPS } from '../registry';
-import { appIcon } from '../appIcon';
+import { isGoogleApp } from '../appIcon';
 import { useShell } from '../store';
 import { DOCK_WIDTH } from '../layout';
+import { AppGlyph } from './AppGlyph';
 
 export function Dock() {
   const { state, dispatch } = useShell();
@@ -62,18 +63,18 @@ export function Dock() {
               aria-current={isActive ? 'true' : undefined}
               onClick={() => dispatch({ type: 'OPEN_APP', app })}
             >
-              <span
-                className="flex h-10 w-10 items-center justify-center rounded-2xl transition-transform duration-[var(--goose-duration-fast)] group-hover:scale-110"
+              <AppGlyph
+                app={app}
+                size={40}
+                className="h-10 w-10 rounded-2xl transition-transform duration-[var(--goose-duration-fast)] group-hover:scale-110"
                 style={{
-                  color: app.tint,
-                  backgroundColor: isRunning
-                    ? `color-mix(in srgb, ${app.tint} 14%, transparent)`
-                    : 'transparent',
+                  backgroundColor:
+                    isRunning && !isGoogleApp(app.id)
+                      ? `color-mix(in srgb, ${app.tint} 14%, transparent)`
+                      : 'transparent',
                   boxShadow: isActive ? 'var(--goose-shadow-sm)' : undefined,
                 }}
-              >
-                <Icon name={appIcon(app.id)} size={20} />
-              </span>
+              />
 
               <span
                 aria-hidden="true"

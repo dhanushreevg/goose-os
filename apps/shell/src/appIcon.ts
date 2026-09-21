@@ -1,5 +1,29 @@
 import type { IconName } from '@goose/ui';
 
+export const GOOGLE_APP_IDS = [
+  'gmail',
+  'google-calendar',
+  'google-chat',
+  'google-docs',
+  'google-drive',
+  'google-forms',
+  'google-keep',
+  'google-maps',
+  'google-meet',
+  'google-photos',
+  'google-sheets',
+  'google-sites',
+  'google-slides',
+  'google-tasks',
+  'google-voice',
+] as const;
+
+export type GoogleAppId = (typeof GOOGLE_APP_IDS)[number];
+
+export function isGoogleApp(appId: string): appId is GoogleAppId {
+  return (GOOGLE_APP_IDS as readonly string[]).includes(appId);
+}
+
 export function appIcon(appId: string): IconName {
   switch (appId) {
     case 'files':

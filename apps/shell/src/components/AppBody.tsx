@@ -8,6 +8,7 @@ import { appIcon } from '../appIcon';
 import { useShell } from '../store';
 import { useSettings } from '../hooks/useSettings';
 import { useSystemHealth } from '../hooks/useSystemHealth';
+import { AppGlyph } from './AppGlyph';
 
 interface FileEntry {
   name: string;
@@ -224,12 +225,7 @@ function AppSearch() {
                 </p>
                 {appMatches.map((app) => (
                   <div key={app.id} className="flex items-center gap-3 rounded-lg p-2 hover:bg-surface">
-                    <span
-                      className="flex h-8 w-8 items-center justify-center rounded-lg"
-                      style={{ color: app.tint, backgroundColor: `color-mix(in srgb, ${app.tint} 14%, transparent)` }}
-                    >
-                      <Icon name={appIcon(app.id)} size={16} />
-                    </span>
+                    <AppGlyph app={app} size={32} className="h-8 w-8 rounded-lg" />
                     <div className="min-w-0">
                       <p className="truncate text-sm font-medium text-ink">{app.name}</p>
                       <p className="truncate text-xs text-ink-muted">{app.description}</p>
@@ -415,12 +411,7 @@ function AppAppCenter() {
               key={app.id}
               className="flex flex-col gap-2 rounded-xl border border-line/60 bg-white/70 p-3"
             >
-              <span
-                className="flex h-9 w-9 items-center justify-center rounded-lg"
-                style={{ color: app.tint, backgroundColor: `color-mix(in srgb, ${app.tint} 14%, transparent)` }}
-              >
-                <Icon name={appIcon(app.id)} size={18} />
-              </span>
+              <AppGlyph app={app} size={36} className="h-9 w-9 rounded-lg" />
               <div className="min-w-0">
                 <p className="truncate text-sm font-medium text-ink">{app.name}</p>
                 <p className="line-clamp-2 text-[11px] leading-snug text-ink-muted">
@@ -772,15 +763,11 @@ function PreviewPane({ app }: { app: AppDefinition }) {
       className="flex h-full flex-col items-center justify-center gap-3 bg-surface-solid/60 p-8 text-center"
       role="note"
     >
-      <span
-        className="flex h-14 w-14 items-center justify-center rounded-[var(--goose-radius-xl)]"
-        style={{
-          color: app.tint,
-          backgroundColor: `color-mix(in srgb, ${app.tint} 16%, transparent)`,
-        }}
-      >
-        <Icon name={appIcon(app.id)} size={28} />
-      </span>
+      <AppGlyph
+        app={app}
+        size={56}
+        className="h-14 w-14 rounded-[var(--goose-radius-xl)]"
+      />
       <h2 className="text-lg font-semibold text-ink">{app.name}</h2>
       <p className="max-w-sm text-sm leading-relaxed text-ink-muted">
         {app.description}. This module ships in a later phase — the desktop shell, launcher,
@@ -821,8 +808,12 @@ export function AppBody({ appId }: { appId: string }) {
       return <PreviewPane app={app} />;
     default:
       return (
-        <div className="flex h-full items-center justify-center text-sm text-ink-muted">
-          {app.name} — {greeting()}.
+        <div className="flex h-full flex-col items-center justify-center gap-3 bg-surface-solid/60 p-8 text-center">
+          <AppGlyph app={app} size={64} className="h-16 w-16 rounded-2xl" />
+          <p className="text-sm font-medium text-ink">{app.name}</p>
+          <p className="max-w-xs text-xs text-ink-muted">
+            {app.description}. {greeting()}.
+          </p>
         </div>
       );
   }

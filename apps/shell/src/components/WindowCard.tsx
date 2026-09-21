@@ -3,10 +3,11 @@ import type { CSSProperties, PointerEvent as ReactPointerEvent } from 'react';
 import type { WindowState } from '@goose/types';
 import { Icon } from '@goose/ui';
 import { appById } from '../registry';
-import { appIcon } from '../appIcon';
+import { appIcon, isGoogleApp } from '../appIcon';
 import { useShell } from '../store';
 import { cn, clamp } from '@goose/shared-utils';
 import { AppBody } from './AppBody';
+import { AppBadge } from './AppGlyph';
 
 interface LiveGeometry {
   x: number;
@@ -153,7 +154,11 @@ export function WindowCard({ window }: { window: WindowState }) {
           className="flex h-10 shrink-0 select-none items-center gap-2 px-3"
           style={{ borderBottom: '1px solid var(--goose-border)' }}
         >
-          <Icon name={appIcon(app.id)} size={16} style={{ color: app.tint }} />
+          {isGoogleApp(app.id) ? (
+            <AppBadge appId={app.id} size={16} />
+          ) : (
+            <Icon name={appIcon(app.id)} size={16} style={{ color: app.tint }} />
+          )}
           <span className="flex-1 truncate text-sm font-medium">{window.title}</span>
           {app.kind === 'preview' && (
             <span className="rounded-full bg-brand/15 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-brand">

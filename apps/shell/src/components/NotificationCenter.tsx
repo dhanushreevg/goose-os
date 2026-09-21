@@ -1,6 +1,6 @@
 import { Button, Icon } from '@goose/ui';
-import { appIcon } from '../appIcon';
 import { useShell } from '../store';
+import { AppBadge } from './AppGlyph';
 
 function timeAgo(timestamp: number): string {
   const seconds = Math.max(0, Math.floor((Date.now() - timestamp) / 1000));
@@ -67,7 +67,7 @@ export function NotificationCenter() {
               >
                 <div className="flex items-start gap-3">
                   <span className="mt-0.5 text-ink-muted">
-                    <Icon name={appIcon(item.appId)} size={16} />
+                    <AppBadge appId={item.appId} size={16} />
                   </span>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-baseline justify-between gap-2">
